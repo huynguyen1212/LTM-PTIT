@@ -90,7 +90,28 @@ public class CustomerDAO extends DAO {
         }
         return true;
     }
-    
+
+    public boolean updateCustomer2(Customer customer) {
+        String sql = "CALL editCustomer(?, ?, ?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, customer.getName());
+            ps.setString(2, customer.getIdCard());
+            ps.setString(3, customer.getAddress());
+            ps.setString(4, customer.getTel());
+            ps.setString(5, customer.getEmail());
+            ps.setString(6, customer.getNote());
+            ps.setInt(7, customer.getId());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public boolean deleteCustomer(int id) {
         String sql = "DELETE from customer WHERE id=?";
         try {

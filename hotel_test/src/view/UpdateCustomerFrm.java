@@ -167,7 +167,7 @@ public class UpdateCustomerFrm extends javax.swing.JDialog {
         String email = updateClientEmailTxt.getText();
         String tel = updateClientTelTxt.getText();
         String note = updateClientNoteTxt.getText();
-        boolean res = (new CustomerDAO()).updateCustomer(new Customer(id, name, idCard, address, tel, email, note));
+        boolean res = (new CustomerDAO()).updateCustomer2(new Customer(id, name, idCard, address, tel, email, note));
         JOptionPane.showMessageDialog(this, "Cập nhật customer " + (res ? "thành công!" : "lỗi!"));
     }//GEN-LAST:event_jButton1ActionPerformed
 

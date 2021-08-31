@@ -19,11 +19,15 @@ import model.Customer;
  */
 public class SearchCustomerFrm extends javax.swing.JFrame {
 
+//    CustomerDAO cd = new CustomerDAO();
+
     /**
      * Creates new form SearchCustomerFrm
      */
     public SearchCustomerFrm() {
         initComponents();
+//        ArrayList<Customer> rs = cd.searchCustomer("huy");
+//        System.out.println(rs.get(0).getName());
     }
 
     /**
