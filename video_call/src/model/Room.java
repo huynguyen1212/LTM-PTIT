@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,11 +37,11 @@ public class Room implements Serializable{
     @JoinColumn(name = "createdBy")
     private User user;  
   
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    List<modelvideocall.RoomCall> listRoomCall; 
+    @OneToMany(mappedBy = "room")
+    private List<RoomCall> listRoomCall; 
     
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    List<modelvideocall.RoomMember> listRoomMember;
+    @OneToMany(mappedBy = "room")
+    private List<RoomMember> listRoomMember;
     
     public Room() {
         super();
