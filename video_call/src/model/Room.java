@@ -16,43 +16,43 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "tblRoom")
-public class Room implements Serializable{
+public class Room implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;         
-         @Column(name = "name")
-    private String name;   
-  
+    private int id;
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "image")
-    private String image;    
- 
+    private String image;
+
     @Column(name = "createdAt")
-    private String createdAt;    
- 
+    private String createdAt;
+
     @Column(name = "updatedAt")
-    private String updatedAt;  
- 
+    private String updatedAt;
+
     @ManyToOne
     @JoinColumn(name = "createdBy")
-    private User user;  
-  
+    private User user;
+
     @OneToMany(mappedBy = "room")
-    private List<RoomCall> listRoomCall; 
-    
+    private List<RoomCall> listRoomCall;
+
     @OneToMany(mappedBy = "room")
     private List<RoomMember> listRoomMember;
-    
+
     public Room() {
         super();
     }
-     
-         public Room(String name, String image, String createdAt, String  updatedAt) {
+
+    public Room(String name, String image, String createdAt, String updatedAt) {
         super();
         this.name = name;
         this.image = image;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt; 
+        this.updatedAt = updatedAt;
     }
 }
-

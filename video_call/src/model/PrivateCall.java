@@ -30,12 +30,12 @@ public class PrivateCall implements Serializable {
     @ManyToOne
     @JoinColumn(name = "sourceId")
     private User sourceUser;
-    
+
     @ManyToOne
     @JoinColumn(name = "targetId")
     private User targetUser;
 
-         public PrivateCall() {
+    public PrivateCall() {
         super();
     }
 
@@ -45,4 +45,3 @@ public class PrivateCall implements Serializable {
         this.endedAt = endedAt;
     }
 }
-

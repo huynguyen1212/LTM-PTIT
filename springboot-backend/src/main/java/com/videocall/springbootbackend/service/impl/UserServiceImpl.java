@@ -1,10 +1,14 @@
 package com.videocall.springbootbackend.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
+import com.videocall.springbootbackend.base.MyUserDetails;
 import com.videocall.springbootbackend.exception.ResourceNotFoundException;
 import com.videocall.springbootbackend.model.User;
 import com.videocall.springbootbackend.repository.UserRepository;
@@ -19,6 +23,39 @@ public class UserServiceImpl implements UserService {
 		super();
 		this.userRepository = userRepository;
 	}
+	
+    @Override
+    public User findOne(int id) {
+    	User user = userRepository.findById(id).orElse(null);
+        return user;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return user;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findAllByUsername(String username) {
+        List<User> list = userRepository.findAllByUsername(username);
+        return list;
+    }
+
+    @Override
+    public User setOnline(int id) {
+    	User user = userRepository.findById(id).orElse(null);
+        if(user != null){
+            user.setOnline(0);
+            return userRepository.save(user);
+        }
+        return null;
+    }
 
 	@Override
 	public User saveUser(User user) {
@@ -62,5 +99,14 @@ public class UserServiceImpl implements UserService {
 		userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
 		userRepository.deleteById(id);
 	}
-
+	
+    //@Override
+    @Transactional
+    public MyUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if (user == null)
+            throw new UsernameNotFoundException("Not found username : " + username);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        return new MyUserDetails(user.getUsername(), user.getPassword(), true, true, true, true, authorities, user);
+    }
 }

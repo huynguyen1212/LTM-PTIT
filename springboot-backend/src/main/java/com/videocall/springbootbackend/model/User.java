@@ -1,12 +1,14 @@
 package com.videocall.springbootbackend.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -15,13 +17,12 @@ import lombok.Data;
 @Entity
 @Table(name="tbluser")
 public class User {
-	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "id", nullable=false)
     private int id;
 
-    @Column(name = "created_at", nullable=false)
+    @Column(name = "created_at")
     private Timestamp created_at;
 
     @Column(name = "update_at")
@@ -44,6 +45,53 @@ public class User {
 
     @Column(name = "online")
     private int online;
+    
+    @OneToMany(mappedBy = "sourceUser")
+    private List<Friend> listSourceFriend;
+
+    @OneToMany(mappedBy = "targetUser")
+    private List<Friend> listTargetFriend;
+
+    @OneToMany(mappedBy = "user")
+    private List<Room> listRoom;
+
+    @OneToMany(mappedBy = "user")
+    private List<RoomMember> listRoomMember;
+
+    @OneToMany(mappedBy = "user")
+    private List<RoomCall> listRoomCall;
+
+    @OneToMany(mappedBy = "user")
+    private List<Notification> listNotification;
+
+    @OneToMany(mappedBy = "sourceUser")
+    private List<Friend> listMadeCall;
+
+    @OneToMany(mappedBy = "targetUser")
+    private List<Friend> listReceivedCall;
+    
+    public User() {
+        super();
+    }
+    
+    public User(String username, String password1) {
+        this.username = username;
+        this.password = password1;
+    }
+    
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", created_at=" + created_at +
+                ", updated_at=" + update_at +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", last_online=" + last_online +
+                ", online=" + online +
+                '}';
+    }
 
 	public int getId() {
 		return id;

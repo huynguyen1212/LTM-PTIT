@@ -10,4 +10,9 @@ public interface UserService {
 	User getUserById(int id);
 	User updateUser (User user, int id);
 	void deleteUser(int id);
+    public User findOne(int id);
+    public User findByEmail(String email);
+    public User findByUsername(String username);
+    public User setOnline(int id);
+    public List<User> findAllByUsername(String username);
 }

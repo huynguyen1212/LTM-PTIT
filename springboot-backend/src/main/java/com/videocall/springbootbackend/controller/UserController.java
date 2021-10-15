@@ -28,7 +28,7 @@ public class UserController {
 	}
 	
 	//build create user REST API
-	@PostMapping
+	@PostMapping("/register")
 	public ResponseEntity<User> saveUser(@RequestBody User user) {
 		return new ResponseEntity<User>(userService.saveUser(user), HttpStatus.CREATED);
 	}
