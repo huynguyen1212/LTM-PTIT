@@ -28,3 +28,10 @@
 /UDPCall/UDPEntity/dist/
 /UDPCall/UDPServer/build/
 /UDPCall/UDPClient/build/
+/RMI/RMIClient/nbproject/private/
+/RMI/RMIEntity/nbproject/private/
+/RMI/RMIServer/nbproject/private/
+/RMI/RMIEntity/build/
+/RMI/RMIEntity/dist/
+/RMI/RMIServer/build/
+/RMI/RMIClient/build/
