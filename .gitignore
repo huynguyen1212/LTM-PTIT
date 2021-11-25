@@ -68,3 +68,37 @@
 /VideoCall_MRI/RMILib/dist/
 /VideoCall_MRI/RMIServer/build/
 /VideoCall_MRI/RMIClient/build/
+/VideoCall_TCP_RMI/ClientTCP_RMI/build/
+/VideoCall_TCP_RMI/ClientTCP_RMI/nbproject/private/
+/VideoCall_TCP_RMI/LibTCP_RMI/build/
+/VideoCall_TCP_RMI/LibTCP_RMI/dist/
+/VideoCall_TCP_RMI/LibTCP_RMI/nbproject/private/
+/VideoCall_TCP_RMI/ServerRMI/build/
+/VideoCall_TCP_RMI/ServerRMI/nbproject/private/
+/VideoCall_TCP_RMI/ServerTCP/build/
+/VideoCall_TCP_RMI/ServerTCP/nbproject/private/
+/VideoCall_TCP_RMI/TCP_RMILib/nbproject/private/
+/VideoCall_TCP_RMI/TCP_RMIClient/nbproject/private/
+/VideoCall_TCP_RMI/RMIServer/nbproject/private/
+/VideoCall_TCP_RMI/TCPServer/nbproject/private/
+/VideoCall_TCP_RMI/TCP_RMILib/build/
+/VideoCall_TCP_RMI/TCP_RMILib/dist/
+/VideoCall_TCP_RMI/RMIServer/build/
+/VideoCall_TCP_RMI/TCPServer/build/
+/VideoCall_TCP_RMI/TCP_RMIClient/build/
+/Thực hành 2/RMIServer/nbproject/private/
+/Thực hành 2/UDPServer/nbproject/private/
+/Thực hành 2/Lib/nbproject/private/
+/Thực hành 2/TH2Lib/build/
+/Thực hành 2/TH2Lib/nbproject/private/
+/TH2/RMIServer/nbproject/private/
+/TH2/TH2Lib/build/
+/TH2/TH2Lib/nbproject/private/
+/TH2/UDPServer/nbproject/private/
+/TH2/TH2Lib/dist/
+/TH2/TH2Client/nbproject/private/
+/TH2/TH2RMIServer/nbproject/private/
+/TH2/TH2UDPServer/nbproject/private/
+/TH2/TH2RMIServer/build/
+/TH2/TH2UDPServer/build/
+/TH2/TH2Client/build/
