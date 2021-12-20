@@ -102,3 +102,12 @@
 /TH2/TH2RMIServer/build/
 /TH2/TH2UDPServer/build/
 /TH2/TH2Client/build/
+/VideoCall_TCP_RMI2/ClientTCP_RMI/build/
+/VideoCall_TCP_RMI2/ClientTCP_RMI/nbproject/private/
+/VideoCall_TCP_RMI2/LibTCP_RMI/build/
+/VideoCall_TCP_RMI2/LibTCP_RMI/dist/
+/VideoCall_TCP_RMI2/LibTCP_RMI/nbproject/private/
+/VideoCall_TCP_RMI2/ServerRMI/build/
+/VideoCall_TCP_RMI2/ServerRMI/nbproject/private/
+/VideoCall_TCP_RMI2/ServerTCP/build/
+/VideoCall_TCP_RMI2/ServerTCP/nbproject/private/
