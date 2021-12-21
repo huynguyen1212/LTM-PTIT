@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -34,6 +36,10 @@ public class ClientCtr {
     private int userId;
     BufferedImage br;
     ImageIcon ic;
+
+    public void setImageIcon(BufferedImage i) {
+        this.br = i;
+    }
 
     public ClientCtr(Socket mySocket) {
         this.mySocket = mySocket;
@@ -104,8 +110,8 @@ public class ClientCtr {
         }
         return true;
     }
-    
-        public boolean sendDataImg(Object obj) {
+
+    public boolean sendDataImg(Object obj) {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(mySocket.getOutputStream());
 //            oos.reset();
@@ -148,7 +154,7 @@ public class ClientCtr {
                     ObjectInputStream ois = new ObjectInputStream(mySocket.getInputStream());
 
                     Object obj = ois.readObject();
-                    
+
                     if (obj instanceof ObjectWrapper) {
                         ObjectWrapper data = (ObjectWrapper) obj;
 
@@ -164,8 +170,9 @@ public class ClientCtr {
 
                             if (reply == JOptionPane.YES_OPTION) {
                                 sendData(new ObjectWrapper(ObjectWrapper.ACCEPT_CALL, privateCall));
-                                VideoFrm vf = new VideoFrm();
-                                vf.receivedDataProcessingInClient();
+                                VideoFrm vf = new VideoFrm(ClientCtr.this, false);
+//                                vf.receivedDataProcessingInClient();
+                                vf.setVisible(true);
 
                             } else {
                                 sendData(new ObjectWrapper(ObjectWrapper.DENY_CALL, privateCall));
@@ -177,7 +184,6 @@ public class ClientCtr {
                             setListUserId(listUserActive);
                         } // như bt
                         else {
-//                            System.out.println("loggg222222...");
                             for (ObjectWrapper fto : myFunction) {
                                 if (fto.getPerformative() == data.getPerformative()) {
                                     switch (data.getPerformative()) {

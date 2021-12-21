@@ -272,7 +272,7 @@ public class ServerCtr {
 
                             case ObjectWrapper.ACCEPT_CALL:
                                 setOnCall(true);
-                                
+
                                 System.out.println("tcp server receive accept call!");
                                 PrivateCall acceptCallData = (PrivateCall) data.getData();
                                 oos.writeObject(new ObjectWrapper(ObjectWrapper.REPLY_CREATE_PRIVATE_CALL, "accep_ok"));
@@ -281,18 +281,22 @@ public class ServerCtr {
 
                             case ObjectWrapper.SENT_VIDEO:
                                 System.out.println("loggggg img img");
-                                
+
                                 ImageIcon ic;
                                 ic = (ImageIcon) data.getData();
-                                ObjectWrapper dataRV = new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic);
+                                System.out.println(" ic ?? " + ic);
 
-                                for (ServerProcessing sp : myProcess) {
-                                    if (sp.getIdUser() == userFriend.getId()) {
-                                        sp.sendData(dataRV);
-                                        break;
-                                    }
-                                }
-                                oos.writeObject(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, null));
+//                                ObjectWrapper dataRV = new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic);
+//                                
+//                                for (ServerProcessing sp : myProcess) {
+//                                    if (sp.getIdUser() == userFriend.getId()) {
+//                                        sp.sendData(dataRV);
+//                                        break;
+//                                    }
+//                                }
+//                                myProcess.get(1).sendData(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic));
+
+                                oos.writeObject(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic));
                                 break;
 
                             case ObjectWrapper.LOGIN_USER:

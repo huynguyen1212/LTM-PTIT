@@ -111,7 +111,7 @@ public class ListFriendsDetailFrm extends JFrame implements ActionListener {
                     mySocket.setInCall(true);
                     
                     //cho thằng video lên
-                    (new VideoFrm(mySocket)).setVisible(true);
+                    (new VideoFrm(mySocket, true)).setVisible(true);
                     
                     this.dispose();
                 } else { // nếu không online thì báo k có online

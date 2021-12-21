@@ -30,6 +30,7 @@ public class VideoFrm extends JFrame implements ActionListener {
     ImageIcon ic;
     JLabel img_client2 = (new JLabel());
     Webcam cam = Webcam.getDefault();
+    boolean camInit = true;
 
     public VideoFrm() {
         super("Video call app");
@@ -60,6 +61,8 @@ public class VideoFrm extends JFrame implements ActionListener {
             }
         }, 0, 100);
 
+//        this.mySocket.getActiveFunction().add(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, this));
+//        this.mySocket.getActiveFunction().add(new ObjectWrapper(ObjectWrapper.REPLY_CREATE_PRIVATE_CALL, this));
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -71,9 +74,11 @@ public class VideoFrm extends JFrame implements ActionListener {
         });
     }
 
-    public VideoFrm(ClientCtr socket) {
+    public VideoFrm(ClientCtr socket, boolean camInit) {
         super("Video call app");
-        mySocket = socket;
+        this.mySocket = socket;
+        this.camInit = camInit;
+
         JPanel content = new JPanel();
         content.setLayout(null);
 
@@ -86,26 +91,31 @@ public class VideoFrm extends JFrame implements ActionListener {
         img_client.setBounds(new Rectangle(300, 107, 500, 500));
         content.add(img_client);
 
-//        img_client2.setBounds(new Rectangle(500, 107, 500, 500));
-//        content.add(img_client2);
+        img_client2.setBounds(new Rectangle(500, 107, 500, 500));
+        content.add(img_client2);
         this.setContentPane(content);
         this.pack();
         this.setSize(new Dimension(1300, 700));
 
         this.setResizable(false);
 
-        cam.open();
+        if (camInit) {
+            cam.open();
+            new Timer().scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    br = cam.getImage();
+                    ic = new ImageIcon(br);
+                    img_client.setIcon(ic);
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                br = cam.getImage();
-                ic = new ImageIcon(br);
-                img_client.setIcon(ic);
+//                mySocket.setImageIcon(br);
+                    System.out.println(" ic ?? " + ic);
 
-//                mySocket.sendData(new ObjectWrapper(ObjectWrapper.SENT_VIDEO, ic));
-            }
-        }, 0, 100);
+                    mySocket.sendData(new ObjectWrapper(ObjectWrapper.SENT_VIDEO, ic));
+                }
+            }, 0, 100);
+        }
+
 //        actionSendImg();
         mySocket.getActiveFunction().add(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, this));
         mySocket.getActiveFunction().add(new ObjectWrapper(ObjectWrapper.REPLY_CREATE_PRIVATE_CALL, this));
@@ -151,7 +161,7 @@ public class VideoFrm extends JFrame implements ActionListener {
             this.dispose();
         } else if (data.getData().equals("accep_ok")) {
             System.out.println("accep_ok in video");
-            (new VideoFrm(mySocket)).setVisible(true);
+            (new VideoFrm(mySocket, false)).setVisible(true);
         } else {
             System.out.println("refused in video");
             JOptionPane.showMessageDialog(this, "Friend refused call");
@@ -160,17 +170,9 @@ public class VideoFrm extends JFrame implements ActionListener {
         }
     }
 
-    public void receivedDataProcessingInClient() {
-        (new VideoFrm()).setVisible(true);
-    }
-
     public void receivedDataProcessingForImg2(ObjectWrapper data) {
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                ic = (ImageIcon) data.getData();
-                img_client2.setIcon(ic);
-            }
-        }, 0, 100);
+        System.out.println("nhan dc image");
+        ic = (ImageIcon) data.getData();
+        img_client2.setIcon(ic);
     }
 }
