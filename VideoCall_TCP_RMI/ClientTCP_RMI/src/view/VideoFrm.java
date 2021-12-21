@@ -154,14 +154,14 @@ public class VideoFrm extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Friend is busy!");
             mySocket.setInCall(false);
             this.dispose();
-        } else if (data.getData().equals("busy_ok")) {
-            System.out.println("busy_ok in video");
-            JOptionPane.showMessageDialog(this, "Inform busy success");
-            mySocket.setInCall(false);
-            this.dispose();
-        } else if (data.getData().equals("accep_ok")) {
-            System.out.println("accep_ok in video");
-            (new VideoFrm(mySocket, false)).setVisible(true);
+//        } else if (data.getData().equals("busy_ok")) {
+//            System.out.println("busy_ok in video");
+//            JOptionPane.showMessageDialog(this, "Inform busy success");
+//            mySocket.setInCall(false);
+//            this.dispose();
+//        } else if (data.getData().equals("accep_ok")) {
+//            System.out.println("accep_ok in video");
+//            (new VideoFrm(mySocket, false)).setVisible(true);
         } else {
             System.out.println("refused in video");
             JOptionPane.showMessageDialog(this, "Friend refused call");

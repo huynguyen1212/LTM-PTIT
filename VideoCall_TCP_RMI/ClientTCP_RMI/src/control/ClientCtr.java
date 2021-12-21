@@ -171,7 +171,6 @@ public class ClientCtr {
                             if (reply == JOptionPane.YES_OPTION) {
                                 sendData(new ObjectWrapper(ObjectWrapper.ACCEPT_CALL, privateCall));
                                 VideoFrm vf = new VideoFrm(ClientCtr.this, false);
-//                                vf.receivedDataProcessingInClient();
                                 vf.setVisible(true);
 
                             } else {

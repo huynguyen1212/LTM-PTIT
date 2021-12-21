@@ -286,7 +286,7 @@ public class ServerCtr {
                                 ic = (ImageIcon) data.getData();
                                 System.out.println(" ic ?? " + ic);
 
-//                                ObjectWrapper dataRV = new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic);
+                                ObjectWrapper dataRV = new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic);
 //                                
 //                                for (ServerProcessing sp : myProcess) {
 //                                    if (sp.getIdUser() == userFriend.getId()) {
@@ -294,7 +294,7 @@ public class ServerCtr {
 //                                        break;
 //                                    }
 //                                }
-//                                myProcess.get(1).sendData(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic));
+                                myProcess.get(1).sendData(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic));
 
                                 oos.writeObject(new ObjectWrapper(ObjectWrapper.RECIEVE_VIDEO, ic));
                                 break;
